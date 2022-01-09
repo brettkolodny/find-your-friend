@@ -7,6 +7,12 @@ var facial_hair_images = _dir_contents("res://Scenes/Character/Assets/facial-hai
 var head_images = _dir_contents("res://Scenes/Character/Assets/head")
 var legs_images = _dir_contents("res://Scenes/Character/Assets/legs")
 
+var body_images_copy = []
+var arms_images_copy = []
+var face_images_copy = []
+var facial_hair_images_copy = []
+var head_images_copy = []
+var legs_images_copy = []
 
 func _dir_contents(path: String) -> Array:
 	var files = []
@@ -31,13 +37,71 @@ func _ready():
 	randomize()
 
 
-func randomize_peeps():
-	var body_images_copy = body_images.duplicate()
-	var arms_images_copy = arms_images.duplicate()
-	var face_images_copy = face_images.duplicate()
-	var facial_hair_images_copy = facial_hair_images.duplicate()
-	var head_images_copy = head_images.duplicate()
-	var legs_images_copy = legs_images.duplicate()
+func randomize_characters():
+	self._randomize_friend()
+	self._randomize_peeps()
+
+
+func _randomize_friend():
+	var friends = get_tree().get_nodes_in_group("friend")
+	
+	if len(friends) == 0:
+		return
+		
+	var friend = friends[0]
+	
+	
+	body_images_copy = body_images.duplicate()
+	arms_images_copy = arms_images.duplicate()
+	face_images_copy = face_images.duplicate()
+	facial_hair_images_copy = facial_hair_images.duplicate()
+	head_images_copy = head_images.duplicate()
+	legs_images_copy = legs_images.duplicate()
+	
+	var body_index = randi() % len(body_images_copy)
+	var arms_index = randi() % len(arms_images_copy)
+	var face_index = randi() % len(face_images_copy)
+	var facial_hair_index = randi() % len(facial_hair_images_copy)
+	var head_index = randi() % len(head_images_copy)
+	var legs_index = randi() % len(legs_images_copy)
+	
+	var body_image = load(body_images_copy[body_index])
+	var arms_image = load(arms_images_copy[arms_index])
+	var face_image = load(face_images_copy[face_index])
+	var facial_hair_image = load(facial_hair_images_copy[facial_hair_index])
+	var head_image = load(head_images_copy[head_index])
+	var legs_image = load(legs_images_copy[legs_index])
+	
+	body_images_copy.remove(body_index)
+	arms_images_copy.remove(arms_index)
+	face_images_copy.remove(face_index)
+	facial_hair_images_copy.remove(facial_hair_index)
+	head_images_copy.remove(head_index)
+	legs_images_copy.remove(legs_index)
+	
+	
+	var character = friend.get_node("Character")
+	var body = character.get_node("Body")
+	var arms = character.get_node("Arms")
+	var facial_hair = character.get_node("FacialHair")
+	var legs = character.get_node("Legs")
+	var head = character.get_node("Head")
+	var face = character.get_node("Face")
+	
+	body.texture = body_image
+	arms.texture = arms_image
+	face.texture = face_image
+	facial_hair.texture = facial_hair_image
+	legs.texture = legs_image
+	head.texture = head_image
+
+func _randomize_peeps():
+	body_images_copy = body_images.duplicate()
+	arms_images_copy = arms_images.duplicate()
+	face_images_copy = face_images.duplicate()
+	facial_hair_images_copy = facial_hair_images.duplicate()
+	head_images_copy = head_images.duplicate()
+	legs_images_copy = legs_images.duplicate()
 
 	# Randomzi Peeps
 	var peeps = get_tree().get_nodes_in_group("peep")

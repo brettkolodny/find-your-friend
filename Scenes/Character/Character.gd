@@ -5,6 +5,7 @@ const SCALE_AMOUNT = 0.1
 var is_growing = false
 
 export var scale_factor = 1
+export var should_idle = true
 
 onready var initial_scale = self.scale.y
 
@@ -21,6 +22,9 @@ func _ready():
 		self.scale = Vector2(self.scale.x, self.scale.y - initial_scale_state)
 
 func _process(delta):
+	if !self.should_idle:
+		return
+	
 	var new_scale = self.scale.y
 	
 	if is_growing:
