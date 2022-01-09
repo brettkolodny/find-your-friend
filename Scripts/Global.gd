@@ -128,9 +128,6 @@ func _randomize_peeps():
 	var peeps = get_tree().get_nodes_in_group("peep")
 	
 	for peep in peeps:
-		if randi() % 2:
-			peep.scale.x *= -1
-
 		var character = peep.get_node("Character")
 		var body = character.get_node("Body")
 		var arms = character.get_node("Arms")
@@ -153,3 +150,11 @@ func _randomize_peeps():
 		facial_hair.texture = facial_hair_image
 		legs.texture = legs_image
 		head.texture = head_image
+
+
+func level_win(time):
+	print("won in %s" % str(time))
+	
+	
+func level_lose():
+	print("lost")

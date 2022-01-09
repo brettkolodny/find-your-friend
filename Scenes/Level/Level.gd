@@ -18,6 +18,8 @@ func spawn_character(node: PackedScene) -> Node2D:
 	var new_character: Node2D = node.instance()
 	new_character.scale = character_scale
 	
+	if randi() % 2:
+		new_character.scale.x *= -1
 	
 	var rand_x = randi() % int(spawn_area_size.x)
 	var rand_y = randi() % int(spawn_area_size.y)
@@ -117,11 +119,10 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_left_click"):
 			var friend = get_tree().get_nodes_in_group("friend")[0]
 			if self.character_is_hit(friend):
-				print("hit friend")
+				Global.level_win(OS.get_ticks_msec() - self.start_time)
 			else:
 				var peeps = get_tree().get_nodes_in_group("peep")
 				for peep in peeps:
 					if self.character_is_hit(peep):
-						print("Hit peep")
-						return
-				print("Hit nothing")
+						Global.level_lose()
+						break
