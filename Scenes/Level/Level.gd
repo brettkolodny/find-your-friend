@@ -59,7 +59,20 @@ func zoom_out():
 	$CanvasLayer/ZoomedIn.visible = false
 	$Camera2D.position = get_viewport_rect().size / 2
 	$Camera2D.zoom = Vector2(1, 1)
+
+
+func character_is_hit(character) -> bool:
+	var hit_box: CollisionShape2D = character.get_node("Character").get_node("HitBox").get_node("HitBoxShape")
+	var hit_box_pos = hit_box.global_position
+	var hit_box_size = hit_box.shape.extents * character.scale
 	
+	if $Camera2D.global_position.x >= (hit_box_pos.x - hit_box_size.x) \
+	and $Camera2D.global_position.x <= (hit_box_pos.x + hit_box_size.x) \
+	and $Camera2D.global_position.y >= (hit_box_pos.y - hit_box_size.y) \
+	and $Camera2D.global_position.y <= (hit_box_pos.y + hit_box_size.y):
+		return true
+	else:
+		return false
 
 
 func set_timer():
@@ -83,6 +96,7 @@ func _ready():
 	Global.randomize_characters()
 	
 	var friend_preview: Node2D = friend.duplicate()
+	friend_preview.remove_from_group("friend")
 	friend_preview.get_node("Character").should_idle = false
 	$FriendCard/FriendPreview.add_child(friend_preview)
 	friend_preview.global_position = $FriendCard/FriendPreview.global_position
@@ -99,3 +113,15 @@ func _process(_delta):
 
 	if is_zoomed:
 		$Camera2D.global_position = $Camera2D.get_viewport().get_mouse_position()
+		
+		if Input.is_action_just_pressed("ui_left_click"):
+			var friend = get_tree().get_nodes_in_group("friend")[0]
+			if self.character_is_hit(friend):
+				print("hit friend")
+			else:
+				var peeps = get_tree().get_nodes_in_group("peep")
+				for peep in peeps:
+					if self.character_is_hit(peep):
+						print("Hit peep")
+						return
+				print("Hit nothing")

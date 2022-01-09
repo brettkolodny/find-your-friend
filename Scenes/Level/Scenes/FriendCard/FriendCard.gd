@@ -12,10 +12,8 @@ func _ready():
 
 
 func _on_Area2D_mouse_entered():
-	print("mouse enter")
 	self.modulate.a = 1.0
 
 
 func _on_Area2D_mouse_exited():
-	print("mouse exit")
 	self.modulate.a = 0.65

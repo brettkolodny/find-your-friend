@@ -6,6 +6,7 @@ var is_growing = false
 
 export var scale_factor = 1
 export var should_idle = true
+export var is_friend = false
 
 onready var initial_scale = self.scale.y
 
