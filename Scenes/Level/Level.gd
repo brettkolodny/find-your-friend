@@ -1,12 +1,15 @@
-extends Node
+extends Node2D
 
 const PEEP_SCENE = preload("res://Scenes/Peep/Peep.tscn")
 const FRIEND_SCENE = preload("res://Scenes/Friend/Friend.tscn")
 const PLAY_AREA_PADDING = Vector2(100, 100)
 
-export var num_peeps = 100
+export var num_peeps = 50
 export var character_scale = Vector2(2, 2)
 
+onready var start_time = OS.get_ticks_msec()
+
+var is_zoomed = false
 
 func spawn_character(node: PackedScene) -> Node2D:
 	var spawn_area_position = $SpawnArea/SpawnAreaShape.position
@@ -40,7 +43,38 @@ func spawn_peeps():
 		$Characters.add_child(new_peep)
 
 
+func zoom_in():
+	is_zoomed = true
+	$FriendCard.visible = false
+	$CanvasLayer/ZoomedIn.visible = true
+	$Camera2D.global_position = get_global_mouse_position()
+	$Camera2D.zoom = Vector2(0.5, 0.5)
+
+
+func zoom_out():
+	is_zoomed = false
+	$FriendCard.visible = true
+	$CanvasLayer/ZoomedIn.visible = false
+	$Camera2D.position = get_viewport_rect().size / 2
+	$Camera2D.zoom = Vector2(1, 1)
+	
+
+
+func set_timer():
+	var elapsed_time = OS.get_ticks_msec()
+	
+	var seconds = elapsed_time / 1_000 % 60
+	var minutes = elapsed_time / 60_000 % 60
+	
+	var new_time_string = "%sm %ss" % [str(minutes), str(seconds)]
+	
+	if $TimerCanvas/Timer.text != new_time_string:
+		$TimerCanvas/Timer.text = new_time_string
+
 func _ready():
+	$Camera2D.position = get_viewport_rect().size / 2
+	$Camera2D.make_current()
+	
 	var friend = self.spawn_character(FRIEND_SCENE)
 	$Friend.add_child(friend)
 	self.spawn_peeps()
@@ -53,4 +87,15 @@ func _ready():
 	friend_preview.scale = Vector2(6, 6)
 	
 	print($FriendCard/FriendPreview.get_children())
+
+
+func _process(_delta):
+	set_timer()
 	
+	if Input.is_action_just_pressed("ui_right_click"):
+		zoom_in()
+	elif Input.is_action_just_released("ui_right_click"):
+		zoom_out()
+
+	if is_zoomed:
+		$Camera2D.global_position = $Camera2D.get_viewport().get_mouse_position()

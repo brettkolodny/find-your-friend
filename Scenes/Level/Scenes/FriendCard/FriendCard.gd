@@ -8,7 +8,7 @@ extends Sprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.modulate.a = 0.8
+	self.modulate.a = 0.65
 
 
 func _on_Area2D_mouse_entered():
@@ -18,4 +18,4 @@ func _on_Area2D_mouse_entered():
 
 func _on_Area2D_mouse_exited():
 	print("mouse exit")
-	self.modulate.a = 0.8
+	self.modulate.a = 0.65
