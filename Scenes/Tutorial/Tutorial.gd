@@ -25,7 +25,7 @@ func _on_FriendPreviewTutorial_mouse_entered():
 func _process(delta):
 	if Input.is_action_just_pressed("ui_right_click"):
 		$ZoomTutorial.visible = false
-		$Level/FindFriendTutorial/TextureRect.visible = true
+		$Level/FindFriendTutorial/FindFriendTutorialInstructions.visible = true
 	elif Input.is_action_just_released("ui_right_click"):
 		$ZoomTutorial.visible = true
 		$Level/FindFriendTutorial/TextureRect.visible = false
