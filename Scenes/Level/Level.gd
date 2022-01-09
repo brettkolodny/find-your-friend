@@ -2,48 +2,76 @@ extends Node2D
 
 const PEEP_SCENE = preload("res://Scenes/Peep/Peep.tscn")
 const FRIEND_SCENE = preload("res://Scenes/Friend/Friend.tscn")
-const PLAY_AREA_PADDING = Vector2(100, 100)
+const PLAY_AREA_PADDING = Vector2(75, 75)
 
-export var num_peeps = 50
+export var num_peeps = 150
 export var character_scale = Vector2(2, 2)
 
 onready var start_time = OS.get_ticks_msec()
 
 var is_zoomed = false
 
-func spawn_character(node: PackedScene) -> Node2D:
+
+func _sort_by_y_position(a: Node2D, b: Node2D) -> bool:
+	if a.global_position.y > b.global_position.y:
+		return false
+	return true
+
+
+func spawn_characters() -> Node2D:
+	var spawn_points = self._get_spawn_points()
+	spawn_points.shuffle()
+	
+	var characters = []
+	
+	var friend_spawn_point = spawn_points[len(spawn_points) - 1]
+
+	var friend = FRIEND_SCENE.instance()
+	friend.scale = character_scale
+	friend.position = friend_spawn_point
+	characters.push_back(friend)
+
+	
+	if randi() % 2:
+		friend.scale.x * -1
+	
+	for i in range(num_peeps):
+		var new_peep = PEEP_SCENE.instance()
+		new_peep.scale = self.character_scale
+		
+		if randi() % 2:
+			new_peep.scale.x * -1
+		
+		var spawn_point = spawn_points[i]
+		new_peep.position = spawn_point
+		characters.push_back(new_peep)
+		
+	characters.sort_custom(self, "_sort_by_y_position")
+	
+	for character in characters:
+		$Characters.add_child(character)
+		
+	return friend
+
+
+func _get_spawn_points():
 	var spawn_area_position = $SpawnArea/SpawnAreaShape.position
 	var spawn_area_size = $SpawnArea/SpawnAreaShape.shape.extents
 	
-	var new_character: Node2D = node.instance()
-	new_character.scale = character_scale
+	var spawn_points = []
 	
-	if randi() % 2:
-		new_character.scale.x *= -1
+	var start_x = spawn_area_position.x - spawn_area_size.x + PLAY_AREA_PADDING.x / 2
+	var end_x = spawn_area_position.x + spawn_area_size.x - PLAY_AREA_PADDING.x / 2
 	
-	var rand_x = randi() % int(spawn_area_size.x)
-	var rand_y = randi() % int(spawn_area_size.y)
+	var start_y = spawn_area_position.y - spawn_area_size.y + PLAY_AREA_PADDING.y / 2
+	var end_y = spawn_area_position.y + spawn_area_size.y
 	
-	if randi() % 2:
-		rand_x *= -1
-	if randi() % 2:
-		rand_y *= -1
-
-	var new_character_y_size = 24 * new_character.scale.y
-
-	# The position of the peep is at the bottom of the sprites so we have to offset it so they aren't all spawned upwards
-	var new_character_position = Vector2(rand_x + spawn_area_position.x, rand_y + spawn_area_position.y + (new_character_y_size / 2))
-
-	new_character.global_position = new_character_position
+	for x in range(start_x, end_x, Character.BASE_SIZE.x):
+		for y in range(start_y, end_y, Character.BASE_SIZE.y):
+			spawn_points.push_back(Vector2(x, y))
 	
-	return new_character
+	return spawn_points
 
-
-func spawn_peeps():
-	for _i in range(num_peeps):
-		var new_peep = spawn_character(PEEP_SCENE)
-		new_peep.add_to_group("peep")
-		$Characters.add_child(new_peep)
 
 
 func zoom_in():
@@ -98,9 +126,7 @@ func _ready():
 	
 	Global.randomize_level_color()
 	
-	var friend = self.spawn_character(FRIEND_SCENE)
-	$Friend.add_child(friend)
-	self.spawn_peeps()
+	var friend = self.spawn_characters()
 	Global.randomize_characters()
 	
 	var friend_preview: Node2D = friend.duplicate()

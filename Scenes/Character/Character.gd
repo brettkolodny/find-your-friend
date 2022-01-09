@@ -1,6 +1,8 @@
 extends Node2D
+class_name Character
 
 const SCALE_AMOUNT = 0.1
+const BASE_SIZE = Vector2(24, 24)
 
 var is_growing = false
 
