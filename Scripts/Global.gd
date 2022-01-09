@@ -1,6 +1,7 @@
 extends Node
 
 const TITLE_SCENE = preload("res://Scenes/TitleScreen/TitleScreen.tscn")
+const TUTORIAL_SCENE = preload("res://Scenes/Tutorial/Tutorial.tscn")
 const LEVEL_SCENE = preload("res://Scenes/Level/Level.tscn")
 const LEVEL_WIN_SCENE = preload("res://Scenes/LevelWinScreen/LevelWinScreen.tscn")
 const LOSE_SCENE = preload("res://Scenes/LoseScreen/LoseScreen.tscn")
@@ -84,7 +85,7 @@ func back_to_title():
 
 
 func start_game():
-	get_tree().change_scene_to(LEVEL_SCENE)
+	get_tree().change_scene_to(TUTORIAL_SCENE)
 
 
 func next_level():
