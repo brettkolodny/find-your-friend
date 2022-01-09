@@ -24,6 +24,49 @@ var legs_images_copy = []
 
 var level = 1
 
+var familyFacts = ["had a wife and 2 kids",
+		"had a wife and 2 kids who now have no breadwinner",
+		"had a wife and 2.5 kids",
+		"had a ex-wife who will be overjoyed at them being [i]found[/i]",
+		"had a loving husband of 3 year",
+		"was a turbo virgin",
+		"had a husband and a kid on the way",
+		"had a husband and 2 kids",
+		"had a collection of body pillows instead of human connections",
+		"had no human contact beyond the League of Legends community"
+]
+
+var hobbyFacts = ["rock climbing",
+		"doing crosswords",
+		"to live, laugh, and love",
+		"watching Twitch.tv",
+		"listening to Daytona",
+		"listening to choice picks from the Lisa OST",
+		"listening to the John Souls - Magnificent Demon on their commute",
+		"unironically listening to Gachi music"
+]
+
+var findFacts = ["spammed NAM",
+		"subbed to Forsen",
+		"smiled when Pokemain was banned",
+		"radicalized Markov Bot",
+		"posted Elf Tits",
+		"was a Prime Pleb",
+		"failed the FitnessGram™ Pacer Test",
+		"didn’t play Morrowind",
+		"wrote Attack on Titan vore fan fiction",
+		"didn’t like Gura",
+		"@’ed the streamer with hints they didn’t ask for ",
+		"filmed themself at the gym",
+		"didn’t return the shopping cart",
+		"kicked an ice cube under the fridge",
+		"microwaved cold brew coffee",
+		"tried to go to the bathroom during their warehouse shif"
+]
+
+var familyFact
+var hobbyFact
+var findFact
 
 # This is where you can implement the random color
 func randomize_level_color():
@@ -213,6 +256,16 @@ func _randomize_peeps():
 		
 		head.texture = head_image
 
+func _get_friend_facts():
+	#Reset seed
+	randomize()
+	
+	#randomly select facts
+	var familyFact = familyFacts[randi() % familyFacts.size()]
+	var hobbyFact = hobbyFacts[randi() % hobbyFacts.size()]
+	var findFact = findFacts[randi() % findFacts.size()]
+	
+	print(familyFact)
 
 func _ready():
 	randomize()
