@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/level_win_time.png-befe549049f112f46de1056460311edc.stex"
+path="res://.import/level_win_friend_info.png-a09bb3de2c2a0b05a5a356a8fa03dcd8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/LevelWin/Assets/level_win_time.png"
-dest_files=[ "res://.import/level_win_time.png-befe549049f112f46de1056460311edc.stex" ]
+source_file="res://Scenes/LevelWinScreen/Assets/level_win_friend_info.png"
+dest_files=[ "res://.import/level_win_friend_info.png-a09bb3de2c2a0b05a5a356a8fa03dcd8.stex" ]
 
 [params]
 

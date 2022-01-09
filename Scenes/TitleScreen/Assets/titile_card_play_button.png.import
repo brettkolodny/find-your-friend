@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/level_win_title.png-00fc60772b544f079954ab6bb0a34cc9.stex"
+path="res://.import/titile_card_play_button.png-ed0abbde48f9e1932dee924c0af06954.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/LevelWin/Assets/level_win_title.png"
-dest_files=[ "res://.import/level_win_title.png-00fc60772b544f079954ab6bb0a34cc9.stex" ]
+source_file="res://Scenes/TitleScreen/Assets/titile_card_play_button.png"
+dest_files=[ "res://.import/titile_card_play_button.png-ed0abbde48f9e1932dee924c0af06954.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

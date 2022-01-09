@@ -1,6 +1,12 @@
 extends Node
 
+const TITLE_SCENE = preload("res://Scenes/TitleScreen/TitleScreen.tscn")
+const LEVEL_SCENE = preload("res://Scenes/Level/Level.tscn")
+const LEVEL_WIN_SCENE = preload("res://Scenes/LevelWinScreen/LevelWinScreen.tscn")
+const LOSE_SCENE = preload("res://Scenes/LoseScreen/LoseScreen.tscn")
+
 export var level_color = Color(1, 0, 0)
+export var num_peeps = 5
 
 var body_images = _dir_contents("res://Scenes/Character/Assets/body")
 var arms_images = _dir_contents("res://Scenes/Character/Assets/arms")
@@ -15,6 +21,44 @@ var face_images_copy = []
 var facial_hair_images_copy = []
 var head_images_copy = []
 var legs_images_copy = []
+
+var level = 1
+
+
+# This is where you can implement the random color
+func randomize_level_color():
+	self.level_color = Color(0.172549019607843, 0.772549019607843, 0.964705882352941)
+
+
+func randomize_characters():
+	self._randomize_friend()
+	self._randomize_peeps()
+
+
+func back_to_title():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	get_tree().change_scene_to(TITLE_SCENE)
+
+
+func start_game():
+	get_tree().change_scene_to(LEVEL_SCENE)
+
+
+func next_level():
+	self.level += 1
+	self.num_peeps = self.level * 5
+	get_tree().change_scene_to(LEVEL_SCENE)
+
+
+func level_win(time):
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	print("won in %s" % str(time))
+	get_tree().change_scene_to(LEVEL_WIN_SCENE)
+
+
+func level_lose():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	get_tree().change_scene_to(LOSE_SCENE)
 
 
 func _dir_contents(path: String) -> Array:
@@ -36,15 +80,6 @@ func _dir_contents(path: String) -> Array:
 	return files
 
 
-func _ready():
-	randomize()
-
-
-func randomize_characters():
-	self._randomize_friend()
-	self._randomize_peeps()
-
-
 func _randomize_friend():
 	var friends = get_tree().get_nodes_in_group("friend")
 	
@@ -52,7 +87,6 @@ func _randomize_friend():
 		return
 		
 	var friend = friends[0]
-	
 	
 	body_images_copy = body_images.duplicate()
 	arms_images_copy = arms_images.duplicate()
@@ -180,14 +214,5 @@ func _randomize_peeps():
 		head.texture = head_image
 
 
-# This is where you can implement the random color
-func randomize_level_color():
-	self.level_color = Color(0.172549019607843, 0.772549019607843, 0.964705882352941)
-
-
-func level_win(time):
-	print("won in %s" % str(time))
-	
-	
-func level_lose():
-	print("lost")
+func _ready():
+	randomize()

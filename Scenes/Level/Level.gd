@@ -4,18 +4,11 @@ const PEEP_SCENE = preload("res://Scenes/Peep/Peep.tscn")
 const FRIEND_SCENE = preload("res://Scenes/Friend/Friend.tscn")
 const PLAY_AREA_PADDING = Vector2(75, 75)
 
-export var num_peeps = 150
 export var character_scale = Vector2(2, 2)
 
 onready var start_time = OS.get_ticks_msec()
 
 var is_zoomed = false
-
-
-func _sort_by_y_position(a: Node2D, b: Node2D) -> bool:
-	if a.global_position.y > b.global_position.y:
-		return false
-	return true
 
 
 func spawn_characters() -> Node2D:
@@ -33,14 +26,14 @@ func spawn_characters() -> Node2D:
 
 	
 	if randi() % 2:
-		friend.scale.x * -1
+		friend.scale.x *= -1
 	
-	for i in range(num_peeps):
+	for i in range(Global.num_peeps):
 		var new_peep = PEEP_SCENE.instance()
 		new_peep.scale = self.character_scale
 		
 		if randi() % 2:
-			new_peep.scale.x * -1
+			new_peep.scale.x *= -1
 		
 		var spawn_point = spawn_points[i]
 		new_peep.position = spawn_point
@@ -52,26 +45,6 @@ func spawn_characters() -> Node2D:
 		$Characters.add_child(character)
 		
 	return friend
-
-
-func _get_spawn_points():
-	var spawn_area_position = $SpawnArea/SpawnAreaShape.position
-	var spawn_area_size = $SpawnArea/SpawnAreaShape.shape.extents
-	
-	var spawn_points = []
-	
-	var start_x = spawn_area_position.x - spawn_area_size.x + PLAY_AREA_PADDING.x / 2
-	var end_x = spawn_area_position.x + spawn_area_size.x - PLAY_AREA_PADDING.x / 2
-	
-	var start_y = spawn_area_position.y - spawn_area_size.y + PLAY_AREA_PADDING.y / 2
-	var end_y = spawn_area_position.y + spawn_area_size.y
-	
-	for x in range(start_x, end_x, Character.BASE_SIZE.x):
-		for y in range(start_y, end_y, Character.BASE_SIZE.y):
-			spawn_points.push_back(Vector2(x, y))
-	
-	return spawn_points
-
 
 
 func zoom_in():
@@ -120,6 +93,32 @@ func set_timer():
 	if $TimerCanvas/Timer.text != new_time_string:
 		$TimerCanvas/Timer.text = new_time_string
 
+
+func _sort_by_y_position(a: Node2D, b: Node2D) -> bool:
+	if a.global_position.y > b.global_position.y:
+		return false
+	return true
+
+
+func _get_spawn_points():
+	var spawn_area_position = $SpawnArea/SpawnAreaShape.position
+	var spawn_area_size = $SpawnArea/SpawnAreaShape.shape.extents
+	
+	var spawn_points = []
+	
+	var start_x = spawn_area_position.x - spawn_area_size.x + PLAY_AREA_PADDING.x / 2
+	var end_x = spawn_area_position.x + spawn_area_size.x - PLAY_AREA_PADDING.x / 2
+	
+	var start_y = spawn_area_position.y - spawn_area_size.y + PLAY_AREA_PADDING.y / 2
+	var end_y = spawn_area_position.y + spawn_area_size.y
+	
+	for x in range(start_x, end_x, Character.BASE_SIZE.x):
+		for y in range(start_y, end_y, Character.BASE_SIZE.y):
+			spawn_points.push_back(Vector2(x, y))
+	
+	return spawn_points
+
+
 func _ready():
 	$Camera2D.position = get_viewport_rect().size / 2
 	$Camera2D.make_current()
@@ -156,6 +155,5 @@ func _process(_delta):
 				var peeps = get_tree().get_nodes_in_group("peep")
 				for peep in peeps:
 					if self.character_is_hit(peep):
-						print(peep)
 						Global.level_lose()
 						break

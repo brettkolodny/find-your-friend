@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/level_win_button.png-ee0bbd4bd0a93a7a51b2883ebd63bcf9.stex"
+path="res://.import/level_win_background.png-026f8d72137eea377ebfb7697d2922de.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/LevelWin/Assets/level_win_button.png"
-dest_files=[ "res://.import/level_win_button.png-ee0bbd4bd0a93a7a51b2883ebd63bcf9.stex" ]
+source_file="res://Scenes/LevelWinScreen/Assets/level_win_background.png"
+dest_files=[ "res://.import/level_win_background.png-026f8d72137eea377ebfb7697d2922de.stex" ]
 
 [params]
 
