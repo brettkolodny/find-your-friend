@@ -20,6 +20,7 @@ Global="*res://Scripts/Global.gd"
 [display]
 
 window/size/resizable=false
+mouse_cursor/custom_image="res://Assets/pointer.png"
 
 [global]
 

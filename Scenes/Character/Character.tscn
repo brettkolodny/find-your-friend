@@ -2,9 +2,9 @@
 
 [ext_resource path="res://Scenes/Character/Assets/face/face-bored.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Character/Character.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Character/Assets/body/body-bear.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/Character/Assets/arms/arms-bend.png" type="Texture" id=4]
-[ext_resource path="res://Scenes/Character/Assets/legs/legs-blob0.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Character/Assets/body/body-bear-white.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Character/Assets/arms/arms-down-white.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Character/Assets/legs/legs-default0-white.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/Character/Assets/facial-hair/facial-moustacheA.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Character/Assets/head/hat-arrow.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/Character/OutlineShader.tres" type="Material" id=8]

@@ -47,6 +47,7 @@ func spawn_peeps():
 
 func zoom_in():
 	is_zoomed = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	$FriendCard.visible = false
 	$CanvasLayer/ZoomedIn.visible = true
 	$FriendCardZoomedCanvas/FriendCardZoomed.visible = true
@@ -56,6 +57,7 @@ func zoom_in():
 
 func zoom_out():
 	is_zoomed = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$FriendCard.visible = true
 	$FriendCardZoomedCanvas/FriendCardZoomed.visible = false
 	$CanvasLayer/ZoomedIn.visible = false
@@ -91,6 +93,8 @@ func set_timer():
 func _ready():
 	$Camera2D.position = get_viewport_rect().size / 2
 	$Camera2D.make_current()
+	
+	Global.randomize_level_color()
 	
 	var friend = self.spawn_character(FRIEND_SCENE)
 	$Friend.add_child(friend)
