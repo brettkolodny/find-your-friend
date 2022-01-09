@@ -42,6 +42,7 @@ func spawn_character(node: PackedScene) -> Node2D:
 func spawn_peeps():
 	for _i in range(num_peeps):
 		var new_peep = spawn_character(PEEP_SCENE)
+		new_peep.add_to_group("peep")
 		$Characters.add_child(new_peep)
 
 
@@ -68,7 +69,8 @@ func zoom_out():
 func character_is_hit(character) -> bool:
 	var hit_box: CollisionShape2D = character.get_node("Character").get_node("HitBox").get_node("HitBoxShape")
 	var hit_box_pos = hit_box.global_position
-	var hit_box_size = hit_box.shape.extents * character.scale
+	var abs_scale = Vector2(abs(character.scale.x), abs(character.scale.y))
+	var hit_box_size = hit_box.shape.extents * abs_scale
 	
 	if $Camera2D.global_position.x >= (hit_box_pos.x - hit_box_size.x) \
 	and $Camera2D.global_position.x <= (hit_box_pos.x + hit_box_size.x) \
@@ -128,5 +130,6 @@ func _process(_delta):
 				var peeps = get_tree().get_nodes_in_group("peep")
 				for peep in peeps:
 					if self.character_is_hit(peep):
+						print(peep)
 						Global.level_lose()
 						break
