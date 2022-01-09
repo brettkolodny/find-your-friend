@@ -47,6 +47,7 @@ func zoom_in():
 	is_zoomed = true
 	$FriendCard.visible = false
 	$CanvasLayer/ZoomedIn.visible = true
+	$FriendCardZoomedCanvas/FriendCardZoomed.visible = true
 	$Camera2D.global_position = get_global_mouse_position()
 	$Camera2D.zoom = Vector2(0.5, 0.5)
 
@@ -54,6 +55,7 @@ func zoom_in():
 func zoom_out():
 	is_zoomed = false
 	$FriendCard.visible = true
+	$FriendCardZoomedCanvas/FriendCardZoomed.visible = false
 	$CanvasLayer/ZoomedIn.visible = false
 	$Camera2D.position = get_viewport_rect().size / 2
 	$Camera2D.zoom = Vector2(1, 1)
@@ -85,8 +87,6 @@ func _ready():
 	$FriendCard/FriendPreview.add_child(friend_preview)
 	friend_preview.global_position = $FriendCard/FriendPreview.global_position
 	friend_preview.scale = Vector2(6, 6)
-	
-	print($FriendCard/FriendPreview.get_children())
 
 
 func _process(_delta):

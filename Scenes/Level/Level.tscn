@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Level/Assets/play_area.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Level/Scenes/FriendCard/FriendCard.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Level/Assets/Itim-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Scenes/Level/Assets/zoom_in.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Level/Scenes/FriendCardZoomed.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 405, 249 )
@@ -34,8 +35,8 @@ shape = SubResource( 1 )
 [node name="Friend" type="Node2D" parent="."]
 
 [node name="FriendCard" parent="." instance=ExtResource( 3 )]
-position = Vector2( 152, 504 )
-scale = Vector2( 0.401961, 0.401961 )
+position = Vector2( 155.5, 495.471 )
+scale = Vector2( 0.436275, 0.436275 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -70,3 +71,12 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FriendCardZoomedCanvas" type="CanvasLayer" parent="."]
+
+[node name="FriendCardZoomed" parent="FriendCardZoomedCanvas" instance=ExtResource( 6 )]
+visible = false
+margin_left = 72.0
+margin_top = 312.0
+margin_right = 240.0
+margin_bottom = 529.0

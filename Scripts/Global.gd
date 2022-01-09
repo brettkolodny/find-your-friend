@@ -94,6 +94,27 @@ func _randomize_friend():
 	facial_hair.texture = facial_hair_image
 	legs.texture = legs_image
 	head.texture = head_image
+	
+	var friend_zoomed_previews = get_tree().get_nodes_in_group("friend_zoom_preview")
+	
+	if len(friend_zoomed_previews) == 0:
+		return
+		
+	character = friend_zoomed_previews[0]
+	
+	body = character.get_node("Body")
+	arms = character.get_node("Arms")
+	facial_hair = character.get_node("FacialHair")
+	legs = character.get_node("Legs")
+	head = character.get_node("Head")
+	face = character.get_node("Face")
+	
+	body.texture = body_image
+	arms.texture = arms_image
+	face.texture = face_image
+	facial_hair.texture = facial_hair_image
+	legs.texture = legs_image
+	head.texture = head_image
 
 func _randomize_peeps():
 	body_images_copy = body_images.duplicate()
