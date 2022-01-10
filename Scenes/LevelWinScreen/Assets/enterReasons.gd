@@ -62,6 +62,6 @@ func _on_request_completed(result, response_code, headers, body):
 	
 	var friend_name = viewers[randi() % len(viewers)]
 	
-	var tempString = "[font=res://Scenes/LevelWinScreen/Assets/freshImportFont.tres][wait time=1][color=black]You found your friend, %s in[wait time=2] [color=#CE80D9]%.f second(s)[/color].[wait time=3] Your friend %s.[wait time=4]Your friend enjoyed %s.[wait time=5] You really wanted to be their friend because they [color=red]%s[/color].[/wait]"
+	var tempString = "[font=res://Scenes/LevelWinScreen/Assets/freshImportFont.tres][wait time=1][color=black]You found your friend, [color=#9146FF]%s[/color] in[wait time=2] [color=#CE80D9]%.f second(s)[/color].[wait time=3] Your friend %s.[wait time=4]Your friend enjoyed %s.[wait time=5] You really wanted to be their friend because they [color=red]%s[/color].[/wait]"
 	tempString = tempString % [friend_name, 60 - Global.winTime, Global.familyFact, Global.hobbyFact, Global.findFact]
 	self.bbcode_text = tempString

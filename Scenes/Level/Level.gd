@@ -178,7 +178,7 @@ func _on_Countdown_timeout():
 
 
 func _on_Changer_intro_finished():
-	#$Transition/Changer.visible = false
+	$Transition/Changer.visible = false
 	
 	pass # Replace with function body.
 
