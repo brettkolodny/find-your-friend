@@ -9,7 +9,7 @@
 [ext_resource path="res://Scenes/Changer/Changer.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 405, 249 )
+extents = Vector2( 548, 338.5 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 24
@@ -29,7 +29,7 @@ texture = ExtResource( 2 )
 scale = Vector2( 2, 2 )
 
 [node name="SpawnAreaShape" type="CollisionShape2D" parent="SpawnArea"]
-position = Vector2( 479.5, 270 )
+position = Vector2( 622.5, 359.5 )
 shape = SubResource( 1 )
 
 [node name="Characters" type="Node2D" parent="."]
@@ -49,10 +49,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -976.0
-margin_top = -636.0
-margin_right = 970.0
-margin_bottom = 628.0
+margin_left = -1071.0
+margin_top = -631.0
+margin_right = 1070.0
+margin_bottom = 633.0
 texture = ExtResource( 5 )
 expand = true
 __meta__ = {
@@ -65,9 +65,11 @@ __meta__ = {
 modulate = Color( 0, 0, 0, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -33.0
-margin_right = 119.0
-margin_bottom = 36.0
+margin_left = -33.137
+margin_top = 8.907
+margin_right = 118.863
+margin_bottom = 44.907
+rect_scale = Vector2( 1.5, 1.5 )
 custom_fonts/font = SubResource( 2 )
 text = "1m 24s"
 valign = 1

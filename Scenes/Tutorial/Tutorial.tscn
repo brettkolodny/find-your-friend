@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Friend/Friend.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Tutorial/Tutorial.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Tutorial/Assets/preview_card_tutorial.png" type="Texture" id=4]
-[ext_resource path="res://Scenes/Tutorial/Assets/zoom_tutorial.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/Friend to Find.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/Tutorial/Assets/find_friend_tutorial.png" type="Texture" id=6]
 [ext_resource path="res://Assets/JazzInterlude.wav" type="AudioStream" id=7]
 
@@ -15,7 +15,6 @@ extents = Vector2( 99.5, 128 )
 script = ExtResource( 3 )
 
 [node name="Level" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, 0 )
 randomly_spawn = false
 is_tutorial = true
 

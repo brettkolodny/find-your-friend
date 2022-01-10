@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/TitleScreen/Assets/title_card_background.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/TitleScreen/Assets/title_card_title.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/TitleScreen/Assets/titile_card_play_button.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/FindBig.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/playBig.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/TitleScreen/TitleScreen.gd" type="Script" id=4]
 [ext_resource path="res://Assets/namePlate.png" type="Texture" id=5]
 
@@ -35,21 +35,26 @@ __meta__ = {
 [node name="TextureRect" type="TextureRect" parent="Control/TextureRect"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -196.0
-margin_top = 50.0
-margin_right = 196.0
-margin_bottom = 114.0
+margin_left = -195.0
+margin_top = 57.5
+margin_right = 589.0
+margin_bottom = 185.5
+rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureButton" type="TextureButton" parent="Control/TextureRect"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -82.0
-margin_top = 2.5
-margin_right = 82.0
-margin_bottom = 61.5
+margin_left = -80.0
+margin_top = -5.5
+margin_right = 248.0
+margin_bottom = 112.5
+rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false

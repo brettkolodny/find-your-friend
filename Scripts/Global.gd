@@ -137,7 +137,7 @@ func start_game():
 
 func next_level():
 	self.level += 1
-	self.num_peeps = self.level * 10
+	self.num_peeps = self.level * 20
 	get_tree().change_scene_to(LEVEL_SCENE)
 
 
