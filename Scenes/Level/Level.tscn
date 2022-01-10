@@ -59,6 +59,7 @@ __meta__ = {
 [node name="TimerCanvas" type="CanvasLayer" parent="."]
 
 [node name="Timer" type="Label" parent="TimerCanvas"]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 anchor_left = 0.5
 anchor_right = 0.5

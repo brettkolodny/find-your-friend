@@ -24,53 +24,92 @@ var legs_images_copy = []
 
 var level = 1
 
-var familyFacts = ["had a wife and 2 kids",
-		"had a wife and 2 kids who now have no breadwinner",
+var familyFacts = [
+		"had a wife and 2 kids who will now starve",
 		"had a wife and 2.5 kids",
-		"had a ex-wife who will be overjoyed at them being [i]found[/i]",
-		"had a loving husband of 3 year",
+		"had a REAL wife and REAL son who were REAL",
 		"was a turbo virgin",
-		"had a husband and a kid on the way",
-		"had a husband and 2 kids",
+		"had an Onlyfans girlfriend",
+		"had a wife who had a boyfriend",
 		"had a collection of body pillows instead of human connections",
-		"had no human contact beyond the League of Legends community"
+		"had no human contact beyond the League of Legends community",
+		"had 3 sister wives",
+		"had a Version 3 Tamagotchi with Infrared Connection",
+		"had some pretty poggers house plants",
+		"had a cum-rag that had sprouted mushrooms"
+		
 ]
 
 var hobbyFacts = ["rock climbing",
 		"doing crosswords",
 		"to live, laugh, and love",
 		"watching Twitch.tv",
-		"listening to Daytona",
 		"listening to choice picks from the Lisa OST",
-		"listening to the John Souls - Magnificent Demon on their commute",
-		"unironically listening to Gachi music"
+		"listening to the Magnificent Demon song on their commute",
+		"unironically listening to Gachi music",
+		"cooking organically",
+		"doing charity work",
+		"being vegan",
+		"folding laundry",
+		"being a furry",
+		"off-road driving",
+		"being Mormon",
+		"endlessly scrolling Facebook"
 ]
 
-var findFacts = ["spammed NAM",
+var findFacts = [
+		"spammed NAM",
 		"subbed to Forsen",
-		"smiled when Pokemain was banned",
+		"were happy when Pokemain the Queen was banned",
 		"radicalized Markov Bot",
 		"posted Elf Tits",
-		"was a Prime Pleb",
-		"failed the FitnessGram™ Pacer Test",
+		"were a Prime Pleb",
 		"didn’t play Morrowind",
-		"wrote Attack on Titan vore fan fiction",
-		"didn’t like Gura",
+		"wrote IRL streamer vore fan fiction",
 		"@’ed the streamer with hints they didn’t ask for ",
-		"filmed themself at the gym",
-		"didn’t return the shopping cart",
-		"kicked an ice cube under the fridge",
 		"microwaved cold brew coffee",
-		"tried to go to the bathroom during their warehouse shif"
+		"had a cream interior Tesla Model S",
+		"spammed Pregario out of context",
+		"didn't tith 10% of their income to the LDS"
 ]
 
 var familyFact
 var hobbyFact
 var findFact
 
+# x, .48, .35, 1
+var palette = [Color.webmaroon, Color.darkcyan, Color.chocolate, Color.darkviolet, Color.webgreen, Color.sienna, Color.dimgray, Color.deepskyblue, Color.deeppink, Color.yellowgreen]
+
+var winTime
 # This is where you can implement the random color
 func randomize_level_color():
-	self.level_color = Color(0.172549019607843, 0.772549019607843, 0.964705882352941)
+	randomize()
+	
+	#create seed color
+	var seedHue = rand_range(0,1)
+	
+	#needed for some ungodly reason
+	var color0 = Color.white
+	var color1 = Color.white
+	var color2 = Color.white
+	var color3 = Color.white
+	
+	#creates comp and degree shifted colors
+	color0 = color0.from_hsv(seedHue, 0.48, 0.35, 1.0)
+	color1 = color1.from_hsv(bindHue(seedHue + 1),0.48,0.35,1)
+	color1 = color1.from_hsv(bindHue(seedHue + 0.15),0.48,0.35,1)
+	color1 = color1.from_hsv(bindHue(seedHue - 0.15),0.48,0.35,1)
+	
+	#Ignore the above
+	
+	self.level_color = palette[randi() % palette.size()]
+	
+func bindHue(hue):
+	if (hue > 1):
+		hue = hue - 1
+	elif (hue < 1):
+		hue = hue + 1
+	return hue
 
 
 func randomize_characters():
@@ -96,6 +135,7 @@ func next_level():
 func level_win(time):
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	print("won in %s" % str(time))
+	winTime = time
 	get_tree().change_scene_to(LEVEL_WIN_SCENE)
 
 
@@ -256,16 +296,29 @@ func _randomize_peeps():
 		
 		head.texture = head_image
 
-func _get_friend_facts():
+func get_friend_facts():
 	#Reset seed
 	randomize()
 	
-	#randomly select facts
-	var familyFact = familyFacts[randi() % familyFacts.size()]
-	var hobbyFact = hobbyFacts[randi() % hobbyFacts.size()]
-	var findFact = findFacts[randi() % findFacts.size()]
+	#randomly select facts then remove from list
+	var familyIndex = randi() % familyFacts.size()
+	familyFact = familyFacts[familyIndex]
+	if(familyFacts.size() > 1):
+		familyFacts.remove(familyIndex)
+	
+	var hobbyIndex = randi() % hobbyFacts.size()
+	hobbyFact = hobbyFacts[hobbyIndex]
+	if(hobbyFacts.size() > 1):
+		hobbyFacts.remove(hobbyIndex)
+	
+	var findIndex = randi() % findFacts.size()
+	findFact = findFacts[findIndex]
+	if(findFacts.size() > 1):
+		findFacts.remove(findIndex)
 	
 	print(familyFact)
+	print(hobbyFact)
+	print(findFact)
 
 func _ready():
 	randomize()
