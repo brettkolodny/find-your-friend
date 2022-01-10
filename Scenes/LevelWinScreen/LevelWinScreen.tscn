@@ -19,41 +19,40 @@ margin_left = 1.0
 margin_top = 2.0
 margin_right = 1921.0
 margin_bottom = 1082.0
-rect_scale = Vector2( 0.532, 0.553 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = 440.0
-margin_top = 399.0
-margin_right = 638.0
-margin_bottom = 455.0
+margin_left = 826.0
+margin_top = 721.0
+margin_right = 1124.0
+margin_bottom = 819.0
 color = Color( 0.976471, 0.854902, 0.545098, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureButton" type="TextureButton" parent="."]
-margin_left = 452.0
-margin_top = 405.0
-margin_right = 714.0
-margin_bottom = 496.0
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = 844.0
+margin_top = 725.0
+margin_right = 1106.0
+margin_bottom = 816.0
 texture_normal = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="FriendPreview" type="Node2D" parent="." groups=["win-friend-preview"]]
-position = Vector2( 640, 352 )
+position = Vector2( 1202, 650 )
+scale = Vector2( 2, 2 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 311.0
-margin_top = 229.0
-margin_right = 542.0
-margin_bottom = 386.0
+margin_left = 583.0
+margin_top = 411.0
+margin_right = 1016.0
+margin_bottom = 690.0
 bbcode_enabled = true
 bbcode_text = "[color/black]TEST[/color]"
 text = "[color/black]TEST[/color]"
@@ -68,6 +67,7 @@ __meta__ = {
 [node name="Transition" type="CanvasLayer" parent="."]
 
 [node name="Changer" parent="Transition" instance=ExtResource( 6 )]
+visible = false
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 

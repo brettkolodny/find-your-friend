@@ -37,6 +37,8 @@ MusicScene="*res://Scenes/Music Controller/Music Scene.tscn"
 
 [display]
 
+window/size/width=1920
+window/size/height=1080
 window/size/resizable=false
 mouse_cursor/custom_image="res://Assets/pointer.png"
 

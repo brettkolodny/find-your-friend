@@ -7,6 +7,8 @@
 [ext_resource path="res://Assets/namePlate.png" type="Texture" id=5]
 
 [node name="TitleScreen" type="Node2D"]
+position = Vector2( -43, -72 )
+scale = Vector2( 2, 2 )
 script = ExtResource( 4 )
 
 [node name="Control" type="Control" parent="."]

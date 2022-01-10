@@ -13,15 +13,14 @@ current_char = 0
 [node name="Lose Text" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 513, 301 )
-scale = Vector2( 0.533, 0.553 )
+position = Vector2( 960, 540 )
 texture = ExtResource( 1 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 310.0
-margin_top = 226.0
-margin_right = 545.0
-margin_bottom = 388.0
+margin_left = 583.0
+margin_top = 412.0
+margin_right = 1005.0
+margin_bottom = 684.0
 bbcode_enabled = true
 bbcode_text = "testsetsetsetset"
 text = "testsetsetsetset"
@@ -32,21 +31,20 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = 428.0
-margin_top = 399.0
-margin_right = 626.0
-margin_bottom = 455.0
+margin_left = 807.0
+margin_top = 720.0
+margin_right = 1107.0
+margin_bottom = 819.0
 color = Color( 0.976471, 0.854902, 0.545098, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureButton" type="TextureButton" parent="."]
-margin_left = 452.0
-margin_top = 405.0
-margin_right = 714.0
-margin_bottom = 496.0
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = 846.0
+margin_top = 724.0
+margin_right = 1108.0
+margin_bottom = 815.0
 texture_normal = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false

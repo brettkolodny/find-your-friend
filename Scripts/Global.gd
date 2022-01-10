@@ -7,7 +7,7 @@ const LEVEL_WIN_SCENE = preload("res://Scenes/LevelWinScreen/LevelWinScreen.tscn
 const LOSE_SCENE = preload("res://Scenes/LoseScreen/LoseScreen.tscn")
 
 export var level_color = Color(1, 0, 0)
-export var num_peeps = 5
+export var num_peeps = 10
 
 var friend_body = null
 var friend_face = null
@@ -137,7 +137,7 @@ func start_game():
 
 func next_level():
 	self.level += 1
-	self.num_peeps = self.level * 5
+	self.num_peeps = self.level * 10
 	get_tree().change_scene_to(LEVEL_SCENE)
 
 
