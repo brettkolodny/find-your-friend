@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/LoseScreen/Assets/Friend Not Found.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/LoseScreen/loseScript.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/LoseScreen/loseText.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/LoseScreen/Shucks.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Changer/Changer.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RichTextEffect" id=1]
 script = ExtResource( 3 )
@@ -51,4 +52,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Transition" type="CanvasLayer" parent="."]
+
+[node name="Changer" parent="Transition" instance=ExtResource( 5 )]
+
 [connection signal="pressed" from="TextureButton" to="RichTextLabel" method="_on_TextureButton_pressed"]
+[connection signal="intro_finished" from="Transition/Changer" to="RichTextLabel" method="_on_Changer_intro_finished"]
+[connection signal="outro_finished" from="Transition/Changer" to="RichTextLabel" method="_on_Changer_outro_finished"]

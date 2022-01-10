@@ -88,6 +88,5 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-autoplay = true
 
 [connection signal="mouse_entered" from="Level/FriendPreviewTutorial" to="." method="_on_FriendPreviewTutorial_mouse_entered"]

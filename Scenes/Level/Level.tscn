@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Level/Assets/play_area.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Level/Assets/Itim-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Scenes/Level/Assets/zoom_in.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/Level/Scenes/FriendCardZoomed.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Changer/Changer.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 405, 249 )
@@ -85,4 +86,10 @@ margin_bottom = 529.0
 wait_time = 60.0
 autostart = true
 
+[node name="Transition" type="CanvasLayer" parent="."]
+
+[node name="Changer" parent="Transition" instance=ExtResource( 7 )]
+
 [connection signal="timeout" from="Countdown" to="." method="_on_Countdown_timeout"]
+[connection signal="intro_finished" from="Transition/Changer" to="." method="_on_Changer_intro_finished"]
+[connection signal="outro_finished" from="Transition/Changer" to="." method="_on_Changer_outro_finished"]

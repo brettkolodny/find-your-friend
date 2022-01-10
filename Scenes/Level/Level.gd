@@ -12,6 +12,8 @@ onready var start_time = OS.get_ticks_msec()
 
 var is_zoomed = false
 
+var levelWon = false;
+
 func spawn_characters() -> Node2D:
 	var spawn_points = self._get_spawn_points()
 	spawn_points.shuffle()
@@ -136,9 +138,12 @@ func _ready():
 	friend_preview.global_position = $FriendCard/FriendPreview.global_position
 	friend_preview.scale = Vector2(6, 6)
 	
+	$Transition/Changer.visible = true
+	$Transition/Changer.In(1.5)
+	
 	#if top most node is Tutorial don't do this
-	if(!self.is_tutorial):
-		MusicScene.minutePlayer()
+	#if(!self.is_tutorial):
+	MusicScene.minutePlayer()
 
 func _process(_delta):
 	self.set_timer()
@@ -154,15 +159,35 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_left_click"):
 			var friend = get_tree().get_nodes_in_group("friend")[0]
 			if self.character_is_hit(friend):
-				Global.level_win($Countdown.time_left)
+				levelWon = true
+				$Transition/Changer.visible = true
+				$Transition/Changer.Out(1.5)
 			else:
 				var peeps = get_tree().get_nodes_in_group("peep")
 				for peep in peeps:
 					if self.character_is_hit(peep):
-						Global.level_lose()
+						levelWon = false
+						$Transition/Changer.visible = true
+						$Transition/Changer.Out(1.5)
 						break
 
 
 func _on_Countdown_timeout():
 	if !self.is_tutorial:
 		Global.level_lose()
+
+
+func _on_Changer_intro_finished():
+	#$Transition/Changer.visible = false
+	
+	pass # Replace with function body.
+
+
+func _on_Changer_outro_finished():
+	if (levelWon):
+		Global.level_win($Countdown.time_left)
+		pass
+	else:
+		Global.level_lose()
+		pass
+	pass # Replace with function body.

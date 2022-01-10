@@ -40,3 +40,7 @@ func _ready():
 
 func _on_NextLevelButton_pressed():
 	Global.next_level()
+
+
+func _on_Changer_intro_finished():
+	pass # Replace with function body.
