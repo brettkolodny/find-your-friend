@@ -15,6 +15,7 @@ script = ExtResource( 3 )
 
 [node name="Level" parent="." instance=ExtResource( 1 )]
 randomly_spawn = false
+is_tutorial = true
 
 [node name="Friend2" parent="Level" instance=ExtResource( 2 )]
 position = Vector2( 515, 312 )

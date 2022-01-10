@@ -143,7 +143,6 @@ func next_level():
 
 func level_win(time):
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	print("won in %s" % str(time))
 	winTime = time
 	
 	var friend = get_tree().get_nodes_in_group("friend")[0].duplicate()

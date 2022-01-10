@@ -10,17 +10,13 @@ var second = 30;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	minute = Global.winTime / 1000 / 60 
-	second = int(Global.winTime / 1000) % 60
-	
 	print(minute)
 	print(second)
 
 	Global.get_friend_facts()
 
-	var tempString = "[font=res://Scenes/LevelWinScreen/Assets/freshImportFont.tres][wait time=1][color=black]You found your friend in[wait time=2] [color=#CE80D9]%.f minute(s) and %.f second(s)[/color].[wait time=3] Your friend %s.[wait time=4]Your friend enjoyed %s.[wait time=5] You really wanted to be their friend because they [color=red]%s[/color].[/wait]"
-	tempString = tempString % [minute, second, Global.familyFact, Global.hobbyFact, Global.findFact]
+	var tempString = "[font=res://Scenes/LevelWinScreen/Assets/freshImportFont.tres][wait time=1][color=black]You found your friend in[wait time=2] [color=#CE80D9]%.f second(s)[/color].[wait time=3] Your friend %s.[wait time=4]Your friend enjoyed %s.[wait time=5] You really wanted to be their friend because they [color=red]%s[/color].[/wait]"
+	tempString = tempString % [60 - Global.winTime, Global.familyFact, Global.hobbyFact, Global.findFact]
 	self.bbcode_text = tempString
 	#print(tempString)
 	

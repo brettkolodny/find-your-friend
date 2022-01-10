@@ -6,11 +6,11 @@ const PLAY_AREA_PADDING = Vector2(75, 75)
 
 export var character_scale = Vector2(2, 2)
 export var randomly_spawn = true;
+export var is_tutorial = false
 
 onready var start_time = OS.get_ticks_msec()
 
 var is_zoomed = false
-
 
 func spawn_characters() -> Node2D:
 	var spawn_points = self._get_spawn_points()
@@ -84,15 +84,9 @@ func character_is_hit(character) -> bool:
 
 
 func set_timer():
-	var elapsed_time = OS.get_ticks_msec()
+	var new_time_string = "%ss" % str(int($Countdown.time_left))
 	
-	var seconds = elapsed_time / 1_000 % 60
-	var minutes = elapsed_time / 60_000 % 60
-	
-	var new_time_string = "%sm %ss" % [str(minutes), str(seconds)]
-	
-	if $TimerCanvas/Timer.text != new_time_string:
-		$TimerCanvas/Timer.text = new_time_string
+	$TimerCanvas/Timer.text = new_time_string
 
 
 func _sort_by_y_position(a: Node2D, b: Node2D) -> bool:
@@ -144,7 +138,7 @@ func _ready():
 
 
 func _process(_delta):
-	set_timer()
+	self.set_timer()
 	
 	if Input.is_action_just_pressed("ui_right_click"):
 		zoom_in()
@@ -157,10 +151,15 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_left_click"):
 			var friend = get_tree().get_nodes_in_group("friend")[0]
 			if self.character_is_hit(friend):
-				Global.level_win(OS.get_ticks_msec() - self.start_time)
+				Global.level_win($Countdown.time_left)
 			else:
 				var peeps = get_tree().get_nodes_in_group("peep")
 				for peep in peeps:
 					if self.character_is_hit(peep):
 						Global.level_lose()
 						break
+
+
+func _on_Countdown_timeout():
+	if !self.is_tutorial:
+		Global.level_lose()
