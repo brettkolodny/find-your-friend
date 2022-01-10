@@ -9,6 +9,13 @@ const LOSE_SCENE = preload("res://Scenes/LoseScreen/LoseScreen.tscn")
 export var level_color = Color(1, 0, 0)
 export var num_peeps = 5
 
+var friend_body = null
+var friend_face = null
+var friend_facial_hair = null
+var friend_head = null
+var friend_legs = null
+var friend_arms = null
+
 var body_images = _dir_contents("res://Scenes/Character/Assets/body")
 var arms_images = _dir_contents("res://Scenes/Character/Assets/arms")
 var face_images = _dir_contents("res://Scenes/Character/Assets/face")
@@ -24,6 +31,7 @@ var head_images_copy = []
 var legs_images_copy = []
 
 var level = 1
+var friend_preview = null
 
 var familyFacts = [
 		"had a wife and 2 kids who will now starve",
@@ -81,7 +89,7 @@ var findFact
 # x, .48, .35, 1
 var palette = [Color.webmaroon, Color.darkcyan, Color.chocolate, Color.darkviolet, Color.webgreen, Color.sienna, Color.dimgray, Color.deepskyblue, Color.deeppink, Color.yellowgreen]
 
-var winTime
+var winTime = 0
 # This is where you can implement the random color
 func randomize_level_color():
 	randomize()
@@ -137,6 +145,9 @@ func level_win(time):
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	print("won in %s" % str(time))
 	winTime = time
+	
+	var friend = get_tree().get_nodes_in_group("friend")[0].duplicate()
+	self.friend_preview = friend
 	get_tree().change_scene_to(LEVEL_WIN_SCENE)
 
 
@@ -192,6 +203,13 @@ func _randomize_friend():
 	var facial_hair_image = load(facial_hair_images_copy[facial_hair_index])
 	var head_image = load(head_images_copy[head_index])
 	var legs_image = load(legs_images_copy[legs_index])
+	
+	self.friend_body = body_image
+	self.friend_arms = arms_image
+	self.friend_face = face_image
+	self.friend_facial_hair = facial_hair_image
+	self.friend_head = head_image
+	self.friend_legs = legs_image
 	
 	body_images_copy.remove(body_index)
 	arms_images_copy.remove(arms_index)
