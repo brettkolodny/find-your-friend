@@ -30,3 +30,8 @@ func _ready():
 func _on_Button_pressed():
 	#Go to new scene?
 	pass # Replace with function body.
+
+
+func _on_TextureButton_pressed():
+	Global.next_level()
+	pass # Replace with function body.
