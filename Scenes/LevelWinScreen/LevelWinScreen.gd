@@ -4,6 +4,10 @@ const CHARACTER_SCENE = preload("res://Scenes/Character/Character.tscn")
 
 
 func _ready():
+	
+	MusicScene.play_music()
+	
+	
 	var friend_preview: Character = CHARACTER_SCENE.instance()
 	var body: Sprite = friend_preview.get_node("Body")
 	var arms: Sprite = friend_preview.get_node("Arms")

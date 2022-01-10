@@ -7,7 +7,7 @@ export var current_char: int = 0
 
 func _process_custom_fx(char_fx: CharFXTransform) -> bool:
 	var waitTime: float = char_fx.env.get("time", 1.0)
-	var speed: float = char_fx.env.get("speed", 16.0)
+	var speed: float = char_fx.env.get("speed", 32.0)
 
 	if char_fx.elapsed_time > waitTime:
 		char_fx.visible = false

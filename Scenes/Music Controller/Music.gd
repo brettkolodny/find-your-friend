@@ -19,6 +19,7 @@ func _ready():
 	pass # Replace with function body.
 
 func play_music():
+	$Music.stop()
 	$Music.stream = jazzInterlude
 	$Music.play()
 

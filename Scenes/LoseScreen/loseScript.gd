@@ -8,6 +8,8 @@ extends RichTextLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	MusicScene.play_music()
 	pass # Replace with function body.
 	var tempString = "[font=res://Scenes/LevelWinScreen/Assets/freshImportFont.tres][wait time=1][color=black]Aww man you didn't find your friend. [wait time=2]Better luck next time!"
 	
