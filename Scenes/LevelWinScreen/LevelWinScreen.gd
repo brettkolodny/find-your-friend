@@ -21,6 +21,7 @@ func _ready():
 	face.texture = Global.friend_face
 	
 	facial_hair.texture = Global.friend_facial_hair
+	facial_hair.modulate = Global.level_color.contrasted()
 	
 	legs.texture = Global.friend_legs
 	legs.modulate = Global.level_color

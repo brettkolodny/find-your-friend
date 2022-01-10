@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Friend/Friend.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Tutorial/Assets/preview_card_tutorial.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/Tutorial/Assets/zoom_tutorial.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/Tutorial/Assets/find_friend_tutorial.png" type="Texture" id=6]
+[ext_resource path="res://Assets/JazzInterlude.wav" type="AudioStream" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 44, 56 )
@@ -84,5 +85,9 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
 
 [connection signal="mouse_entered" from="Level/FriendPreviewTutorial" to="." method="_on_FriendPreviewTutorial_mouse_entered"]

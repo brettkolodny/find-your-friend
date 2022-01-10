@@ -135,7 +135,10 @@ func _ready():
 	$FriendCard/FriendPreview.add_child(friend_preview)
 	friend_preview.global_position = $FriendCard/FriendPreview.global_position
 	friend_preview.scale = Vector2(6, 6)
-
+	
+	#if top most node is Tutorial don't do this
+	if(!self.is_tutorial):
+		MusicScene.minutePlayer()
 
 func _process(_delta):
 	self.set_timer()

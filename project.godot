@@ -33,6 +33,7 @@ config/icon="res://Assets/icon.png"
 [autoload]
 
 Global="*res://Scripts/Global.gd"
+MusicScene="*res://Scenes/Music Controller/Music Scene.tscn"
 
 [display]
 
@@ -42,6 +43,7 @@ mouse_cursor/custom_image="res://Assets/pointer.png"
 [global]
 
 window=false
+auto=false
 
 [input]
 

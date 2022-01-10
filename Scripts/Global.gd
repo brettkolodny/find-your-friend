@@ -235,7 +235,7 @@ func _randomize_friend():
 	face.texture = face_image
 	
 	facial_hair.texture = facial_hair_image
-	
+	facial_hair.modulate = self.level_color.contrasted()
 	legs.texture = legs_image
 	legs.modulate = self.level_color
 	
@@ -264,6 +264,7 @@ func _randomize_friend():
 	face.texture = face_image
 	
 	facial_hair.texture = facial_hair_image
+	facial_hair.modulate = self.level_color.contrasted()
 	
 	legs.texture = legs_image
 	legs.modulate = self.level_color
@@ -308,6 +309,8 @@ func _randomize_peeps():
 		face.texture = face_image
 		
 		facial_hair.texture = facial_hair_image
+		facial_hair.modulate = self.level_color.contrasted()
+		
 		
 		legs.texture = legs_image
 		legs.modulate = self.level_color
