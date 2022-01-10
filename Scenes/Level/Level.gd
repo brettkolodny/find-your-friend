@@ -5,6 +5,7 @@ const FRIEND_SCENE = preload("res://Scenes/Friend/Friend.tscn")
 const PLAY_AREA_PADDING = Vector2(75, 75)
 
 export var character_scale = Vector2(2, 2)
+export var randomly_spawn = true;
 
 onready var start_time = OS.get_ticks_msec()
 
@@ -125,7 +126,13 @@ func _ready():
 	
 	Global.randomize_level_color()
 	
-	var friend = self.spawn_characters()
+	var friend = null
+	
+	if (self.randomly_spawn):
+		friend = self.spawn_characters()
+	else:
+		friend = get_tree().get_nodes_in_group("friend")[0]
+		
 	Global.randomize_characters()
 	
 	var friend_preview: Node2D = friend.duplicate()
