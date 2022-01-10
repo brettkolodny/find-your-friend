@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/MinuteJungle.wav-df73fb1bcf1b5a3b32dd1bf210dac3ef.sample"
+
+[deps]
+
+source_file="res://Assets/MinuteJungle.wav"
+dest_files=[ "res://.import/MinuteJungle.wav-df73fb1bcf1b5a3b32dd1bf210dac3ef.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
