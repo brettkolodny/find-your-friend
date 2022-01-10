@@ -69,6 +69,8 @@ __meta__ = {
 
 [node name="Changer" parent="Transition" instance=ExtResource( 6 )]
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="pressed" from="TextureButton" to="RichTextLabel" method="_on_TextureButton_pressed"]
 [connection signal="intro_finished" from="Transition/Changer" to="RichTextLabel" method="_on_Changer_intro_finished"]
 [connection signal="outro_finished" from="Transition/Changer" to="RichTextLabel" method="_on_Changer_outro_finished"]
